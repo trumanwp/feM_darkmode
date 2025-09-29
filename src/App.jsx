@@ -9,7 +9,7 @@ import {useState} from "react";
 
 function App() {
 
-    const [theme, setTheme] = useState(true);
+    const [theme, setTheme] = useState("light");
 
     const toggleTheme = () => {
         const newTheme = theme === "light" ? "dark" : "light";
@@ -28,7 +28,7 @@ function App() {
                 </div>
                 <div className="flex flex-row gap-4 items-center">
                     <h3 className="text-xs text-gray-400 ">Dark Mode</h3>
-                    <input onClick={toggleTheme} type="checkbox" defaultChecked className="toggle bg-gray-300 checked:bg-[linear-gradient(to_right,hsl(210,79%,56%),hsl(146,68%,55%))] checked:border-0"/>
+                    <input onClick={toggleTheme} type="checkbox" className="toggle bg-gray-300 checked:bg-[linear-gradient(to_right,hsl(210,79%,56%),hsl(146,68%,55%))] checked:border-0"/>
                 </div>
             </nav>
 

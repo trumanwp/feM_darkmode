@@ -7,16 +7,29 @@ import Youtube from "./images/icon-youtube.svg";
 import SubCard from "./components/SubCard.jsx";
 import {useState} from "react";
 import {ContactUs} from "./components/ContactUs.jsx";
+import {useNavigate} from "react-router-dom";
+import { signOut } from "firebase/auth";
+import {auth} from "./firebase.js";
 
 function App() {
 
     const [theme, setTheme] = useState("light");
+    const navigate = useNavigate();
 
     const toggleTheme = () => {
         const newTheme = theme === "light" ? "dark" : "light";
         setTheme(newTheme);
         document.documentElement.classList.toggle("dark", newTheme === "dark");
     }
+
+    const handleLogout = async () => {
+        try {
+            await signOut(auth);        // clear Firebase session
+            navigate("/login");          // redirect to login page
+        } catch (err) {
+            console.error("Logout failed:", err);
+        }
+    };
 
   return (
     <main className="h-screen w-full dark:bg-[linear-gradient(to_bottom,_#202334_25%,_#1e202a_25%)] bg-white flex flex-col items-center">
@@ -30,6 +43,7 @@ function App() {
                 <div className="flex flex-row gap-4 items-center">
                     <h3 className="text-xs text-gray-400 ">Dark Mode</h3>
                     <input onClick={toggleTheme} type="checkbox" className="toggle bg-gray-300 checked:bg-[linear-gradient(to_right,hsl(210,79%,56%),hsl(146,68%,55%))] checked:border-0"/>
+                    <button onClick={handleLogout} className="text-gray-400">Log Out</button>
                 </div>
             </nav>
 

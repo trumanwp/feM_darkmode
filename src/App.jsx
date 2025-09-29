@@ -6,6 +6,7 @@ import Instagram from "./images/icon-instagram.svg";
 import Youtube from "./images/icon-youtube.svg";
 import SubCard from "./components/SubCard.jsx";
 import {useState} from "react";
+import {ContactUs} from "./components/ContactUs.jsx";
 
 function App() {
 
@@ -151,6 +152,8 @@ function App() {
                     direction = "down"
                 />
             </section>
+
+            <ContactUs/>
         </section>
     </main>
   )
